@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vedic Sangha — Sacred Knowledge Portal</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- AUTH PAGE -->
+  <div id="page-auth" class="page active">
+    <div class="mandala mandala-top-right"></div>
+    <div class="mandala mandala-bottom-left"></div>
+
+    <header class="auth-topbar">
+      <div class="logo">🪷 <span>Vedic Sangha</span></div>
+      <select id="auth-lang" class="lang-select" onchange="setLang(this.value)">
+        <option value="en">🌐 English</option>
+        <option value="hi">🕉 हिन्दी</option>
+      </select>
+    </header>
+
+    <main class="auth-main">
+      <div class="auth-card">
+        <div class="om-symbol">🕉</div>
+        <h1 class="auth-title" data-en="Vedic Sangha" data-hi="वैदिक संघ">Vedic Sangha</h1>
+        <p class="auth-subtitle" data-en="Gateway to Sacred Knowledge" data-hi="दिव्य ज्ञान का द्वार">Gateway to Sacred Knowledge</p>
+        <div class="om-divider"><span></span><span class="om-icon">✦</span><span></span></div>
+
+        <div class="auth-tabs">
+          <button id="tab-signup" class="auth-tab active" onclick="switchMode('signup')" data-en="SIGN UP" data-hi="पंजीकरण">SIGN UP</button>
+          <button id="tab-login"  class="auth-tab"        onclick="switchMode('login')"  data-en="LOGIN"   data-hi="लॉग इन">LOGIN</button>
+        </div>
+
+        <div id="auth-form">
+          <div class="field-group" id="field-name">
+            <label class="field-label" data-en="FULL NAME" data-hi="नाम">FULL NAME</label>
+            <input type="text" id="inp-name" class="field-input" placeholder="Enter your full name"
+              data-en-ph="Enter your full name" data-hi-ph="अपना नाम लिखें"
+              autocomplete="name" />
+          </div>
+          <div class="field-group">
+            <label class="field-label" data-en="EMAIL ADDRESS" data-hi="ईमेल पता">EMAIL ADDRESS</label>
+            <input type="email" id="inp-email" class="field-input" placeholder="Enter your email"
+              data-en-ph="Enter your email" data-hi-ph="ईमेल दर्ज करें"
+              autocomplete="email" />
+          </div>
+          <div class="field-group">
+            <label class="field-label" data-en="PASSWORD" data-hi="पासवर्ड">PASSWORD</label>
+            <input type="password" id="inp-pass" class="field-input" placeholder="Enter your password"
+              data-en-ph="Enter your password" data-hi-ph="पासवर्ड दर्ज करें"
+              autocomplete="current-password" />
+          </div>
+
+          <div id="auth-error" class="auth-error" style="display:none;"></div>
+
+          <button class="submit-btn" onclick="handleAuth()">
+            <span id="btn-text"
+              data-en-signup="🌸 Join the Sangha" data-hi-signup="🌸 शामिल हों"
+              data-en-login="🙏 Enter the Sangha"  data-hi-login="🙏 प्रवेश करें">
+              🌸 Join the Sangha
+            </span>
+          </button>
+        </div>
+
+        <div class="om-divider" style="margin-top:20px;"><span></span><span class="om-icon">✦</span><span></span></div>
+        <p class="auth-quote" id="auth-quote">"The soul is eternal, the body is temporary. Seek the eternal."</p>
+      </div>
+    </main>
+  </div>
+
+  <!-- DASHBOARD PAGE -->
+  <div id="page-dashboard" class="page">
+    <div class="mandala mandala-top-right"></div>
+    <div class="mandala mandala-bottom-left"></div>
+
+    <header class="dash-header">
+      <div class="dash-header-inner">
+        <div class="logo logo-light">🪷 <span>Vedic Sangha</span></div>
+        <div class="dash-header-right">
+          <select id="dash-lang" class="lang-select dash-lang" onchange="setLang(this.value)">
+            <option value="en">🌐 English</option>
+            <option value="hi">🕉 हिन्दी</option>
+          </select>
+          <button class="signout-btn" onclick="logout()" data-en="SIGN OUT" data-hi="साइन आउट">SIGN OUT</button>
+        </div>
+      </div>
+    </header>
+
+    <section class="dash-hero">
+      <p class="welcome-small" data-en="Welcome to the Sangha" data-hi="संघ में आपका स्वागत है">Welcome to the Sangha</p>
+      <h1 class="welcome-name">🙏 <span id="welcome-name-text">Seeker</span></h1>
+      <div class="quote-strip">
+        <p class="quote-text" id="dash-quote">"In the silence of the heart, God speaks."</p>
+      </div>
+    </section>
+
+    <div class="personalities-section-bg">
+      <section class="personalities-section">
+        <div class="section-header">
+          <div class="om-divider"><span></span><span class="om-icon">✦</span><span></span></div>
+          <h2 class="section-title" data-en="Spiritual Luminaries" data-hi="आध्यात्मिक विभूतियाँ">Spiritual Luminaries</h2>
+          <p class="section-sub" data-en="Discover the lives and teachings of sacred guides" data-hi="दिव्य मार्गदर्शकों से मिलें">Discover the lives and teachings of sacred guides</p>
+        </div>
+        <div class="cards-grid" id="cards-grid"></div>
+      </section>
+    </div>
+
+    <footer class="dash-footer">
+      <div class="om-divider"><span></span><span class="om-icon">🕉</span><span></span></div>
+      <p class="footer-text">Vedic Sangha — Dedicated to the eternal pursuit of dharma, bhakti, and jnana.</p>
+    </footer>
+  </div>
+
+  <!-- DETAIL PAGE -->
+  <div id="page-detail" class="page">
+    <div class="mandala mandala-top-right"></div>
+
+    <header class="dash-header">
+      <div class="dash-header-inner">
+        <button class="back-btn" onclick="showDashboard()">← <span data-en="BACK" data-hi="वापस">BACK</span></button>
+        <div class="logo logo-light" style="font-size:16px;">🕉 Vedic Sangha</div>
+        <div style="width:80px;"></div>
+      </div>
+    </header>
+
+    <div class="detail-content" id="detail-content"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
