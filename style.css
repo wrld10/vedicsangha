@@ -710,3 +710,24 @@ body {
   .detail-name { font-size: 22px; }
   .detail-content { padding: 30px 16px 60px; }
 }
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* space between image and text */
+}
+
+.logo-pfp {
+  width: 40px;     /* adjust size */
+  height: 40px;    /* adjust size */
+  border-radius: 50%; /* makes it circular */
+  object-fit: cover;  /* keeps image aspect ratio */
+}
+.auth-topbar,
+.dash-header-inner {
+  padding-left: 5 !important;
+  margin-left: 0 !important;
+}
+
+.logo {
+  margin-left: 0 !important;
+}
