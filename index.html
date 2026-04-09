@@ -20,10 +20,16 @@
       <div class="logo">
         <img src="pfp.jpg" alt="Logo" class="logo-pfp" />
          <span>Divine Soul</span></div>
-      <select id="auth-lang" class="lang-select" onchange="setLang(this.value)">
-        <option value="en">🌐 English</option>
-        <option value="hi">🕉 हिन्दी</option>
-      </select>
+      <div class="lang-wrap" id="auth-lang-wrap">
+        <button class="lang-btn" onclick="toggleLangMenu('auth-lang-wrap')">
+          <span class="lang-btn-text">文ᴬ English</span>
+          <span class="lang-arrow"></span>
+        </button>
+        <div class="lang-menu" id="auth-lang-menu">
+          <div class="lang-option" onclick="selectLang('en','auth-lang-wrap')">文ᴬ English</div>
+          <div class="lang-option" onclick="selectLang('hi','auth-lang-wrap')">🕉 हिन्दी</div>
+        </div>
+      </div>
     </header>
 
     <main class="auth-main">
@@ -86,10 +92,16 @@
            <img src="pfp.jpg" alt="Logo" class="logo-pfp" />
           🪷 <span>Divine Soul</span></div>
         <div class="dash-header-right">
-          <select id="dash-lang" class="lang-select dash-lang" onchange="setLang(this.value)">
-            <option value="en">🌐 English</option>
-            <option value="hi">🕉 हिन्दी</option>
-          </select>
+          <div class="lang-wrap" id="dash-lang-wrap">
+            <button class="lang-btn dash-lang-btn" onclick="toggleLangMenu('dash-lang-wrap')">
+              <span class="lang-btn-text">文ᴬ English</span>
+              <span class="lang-arrow lang-arrow-light"></span>
+            </button>
+            <div class="lang-menu lang-menu-light" id="dash-lang-menu">
+              <div class="lang-option" onclick="selectLang('en','dash-lang-wrap')">文ᴬ English</div>
+              <div class="lang-option" onclick="selectLang('hi','dash-lang-wrap')">🕉 हिन्दी</div>
+            </div>
+          </div>
           <button class="signout-btn" onclick="logout()" data-en="SIGN OUT" data-hi="साइन आउट">SIGN OUT</button>
         </div>
       </div>

@@ -109,12 +109,41 @@ function showPage(name) {
 }
 
 /* ── LANGUAGE ───────────────────────────── */
+function toggleLangMenu(wrapId) {
+  var wrap = document.getElementById(wrapId);
+  var isOpen = wrap.classList.contains('open');
+  // close all open menus first
+  var all = document.querySelectorAll('.lang-wrap');
+  for (var i = 0; i < all.length; i++) all[i].classList.remove('open');
+  if (!isOpen) wrap.classList.add('open');
+}
+
+function selectLang(lang, wrapId) {
+  // update button label in this wrap
+  var wrap = document.getElementById(wrapId);
+  var label = lang === 'en' ? '文ᴬ English' : '🕉 हिन्दी';
+  wrap.querySelector('.lang-btn-text').textContent = label;
+  wrap.classList.remove('open');
+  setLang(lang);
+}
+
+// close dropdown when clicking outside
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.lang-wrap')) {
+    var all = document.querySelectorAll('.lang-wrap');
+    for (var i = 0; i < all.length; i++) all[i].classList.remove('open');
+  }
+});
+
 function setLang(lang) {
   currentLang = lang;
 
-  var selects = document.querySelectorAll(".lang-select");
-  for (var i = 0; i < selects.length; i++) {
-    selects[i].value = lang;
+  // sync both dropdowns
+  var wraps = document.querySelectorAll('.lang-wrap');
+  var label = lang === 'en' ? '文ᴬ English' : '🕉 हिन्दी';
+  for (var i = 0; i < wraps.length; i++) {
+    var bt = wraps[i].querySelector('.lang-btn-text');
+    if (bt) bt.textContent = label;
   }
 
   var els = document.querySelectorAll("[data-en]");
